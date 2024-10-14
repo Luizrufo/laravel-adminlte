@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateLivroTable extends Migration
+class CreateAutoresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateLivroTable extends Migration
      */
     public function up()
     {
-        Schema::create('livro', function (Blueprint $table) {
+        Schema::create('autores', function (Blueprint $table) {
             $table->id();
+            $table->string('nome');
+            $table->text(biografia)->nullable();
+            $table->date('data_nascimento')->nullable();
             $table->timestamps();
-            $table->foreignId('autor_id')->constrained('autores')->onDelete('cascade');
-$table->foreignId('livro_id')->constrained('livros')->onDelete('cascade');
-$table->timestamps();
         });
     }
 
@@ -29,6 +29,6 @@ $table->timestamps();
      */
     public function down()
     {
-        Schema::dropIfExists('livro');
+        Schema::dropIfExists('autores');
     }
 }

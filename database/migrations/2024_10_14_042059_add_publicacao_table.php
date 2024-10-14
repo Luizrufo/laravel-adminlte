@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateCategoriasTable extends Migration
+class AddPublicacaoTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateCategoriasTable extends Migration
      */
     public function up()
     {
-        Schema::create('categorias', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('livro', function (Blueprint $table) {
+           $table->string('publicacao')->nullable()->after('titulo');
+            //
         });
     }
 
@@ -26,6 +26,9 @@ class CreateCategoriasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categorias');
+        Schema::table('livro', function (Blueprint $table) {
+            $table->dropColumn('publicacao');
+            //
+        });
     }
 }
